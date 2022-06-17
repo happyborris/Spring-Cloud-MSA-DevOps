@@ -12,7 +12,7 @@ spring:
   application:
     name: apigateway-service
   rabbitmq:
-    host: 127.0.0.1
+    host: 3.39.247.201
     port: 5672
     username: guest
     password: guest
@@ -32,7 +32,7 @@ spring:
             - Method=POST
           filters:
             - RemoveRequestHeader=Cookie
-            - RewritePath=/user-service/(?<segment>.*),/$\{segment}
+            - RewritePath=/user-service/(?<segment>.*),/$\{segment} # http://localhost:8000/user-service/login -> ~:8000/login 으로 줄이기
         - id: user-service2
           uri: lb://USER-SERVICE
           predicates:
@@ -44,7 +44,7 @@ spring:
         - id: user-service3
           uri: lb://USER-SERVICE
           predicates:
-            - Path=/user-service/actuator/**
+            - Path=/user-service/actuator/** # 프로세스가 살아있는지 확인하는 기능 : actuator
             - Method=GET,POST
           filters:
             - RemoveRequestHeader=Cookie
@@ -57,7 +57,7 @@ spring:
           filters:
             - RemoveRequestHeader=Cookie
             - RewritePath=/user-service/(?<segment>.*), /$\{segment}
-            - AuthorizationHeaderFilter
+            - AuthorizationHeaderFilter # 인증과 권한을 체크하기 위한 필터. 로그인, 회원가입, actuator를 제외한 모든 서비스들은 인가된 사용자에게만 제공(헤더에 JWT 토큰으로 구분)
         - id: catalog-service
           uri: lb://CATALOG-SERVICE
           predicates:

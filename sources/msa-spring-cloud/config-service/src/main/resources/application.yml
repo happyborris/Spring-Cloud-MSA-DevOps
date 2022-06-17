@@ -5,7 +5,7 @@ spring:
   application:
     name: config-service
   rabbitmq:
-    host: 127.0.0.1
+    host: 3.39.247.201
     port: 5672
     username: guest
     password: guest
@@ -16,12 +16,13 @@ spring:
       server:
         git:
 #          uri: file:///C:\Users\icore\Desktop\dowon\koscom-msa\git-local-repo
-          uri: file:///Users/dowonlee_1/Desktop/git/koscom-msa/git-local-repo2
+#          uri: file:///Users/dowonlee_1/Desktop/git/koscom-msa/git-local-repo2
+          uri: file:///C:\Users\KOSCOM\git\koscom-msa\git-local-repo2 # 형상관리가 됨
 #          uri: https://github.com/joneconsulting/spring-cloud-config
           default-label: master
       enabled: true
-#        native:
-#          search-locations: file:///C:\Users\icore\Desktop\dowon\koscom-msa\git-local-repo
+#        native: # just 파일
+#          search-locations: file:///C:\Users\icore\Desktop\dowon\koscom-msa\git-local-repo # just 파일
 
 management:
   endpoints:

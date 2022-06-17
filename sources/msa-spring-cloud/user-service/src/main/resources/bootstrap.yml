@@ -4,3 +4,4 @@
         uri: http://127.0.0.1:8888
         name: user-service
 #    active: dev
+# 구성 설정 정보를 외부에 있는 하나의 서버에 모아놓자는 슬로건을 위한 코드

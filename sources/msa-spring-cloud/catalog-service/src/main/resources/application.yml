@@ -5,7 +5,7 @@ spring:
   application:
     name: catalog-service
   zipkin:
-    base-url: http://43.200.42.197:9411
+    base-url: http://3.39.247.201:9411
     enabled: true
   sleuth:
     sampler:

@@ -1,18 +1,18 @@
 server:
   port: 50001
-#  port: ${random.int(50000,50001)}
+#  port: ${random.int(50000,50001)} <<< 범위 제어 가능
 
 spring:
   application:
     name: user-service
-#  zipkin:
-#    base-url: http://43.200.42.197:9411
-#    enabled: true
-#  sleuth:
-#    sampler:
-#      probability: 1.0
+  zipkin:
+    base-url: http://3.39.247.201:9411
+    enabled: true
+  sleuth:
+    sampler:
+      probability: 1.0
   rabbitmq:
-    host: 127.0.0.1
+    host: 3.39.247.201
     port: 5672
     username: guest
     password: guest
@@ -22,6 +22,7 @@ spring:
       settings:
         web-allow-others: true
       path: /h2-console
+
 #  datasource:
 #    driver-class-name: org.h2.Driver
 #    url: jdbc:h2:mem:testdb
@@ -43,6 +44,7 @@ logging:
   level:
     com.example.userservice.client: DEBUG
 
+# actuator의 기능들을 사용하기 위한 부분
 management:
   endpoints:
     web:
@@ -52,11 +54,12 @@ management:
 greeting:
   message: Welcome to the Simple E-commerce.
 
+# order service와 통신을 위한 부분
 order_service:
-  url: http://order-service/order-service/%s/orders
+  url: http://order-service/order-service/%s/orders # order-service라는 app name으로 url 구성
 
 #order_service:
-#  url: http://127.0.0.1:8000/order-service/%s/orders
+#  url: http://127.0.0.1:8000/order-service/%s/orders << 이렇게 써도 됨
 
 #token:
 #  expiration_time: 864000000

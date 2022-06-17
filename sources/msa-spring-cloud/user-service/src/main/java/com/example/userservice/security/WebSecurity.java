@@ -31,10 +31,10 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/actuator/**").permitAll();
 //        http.authorizeRequests().antMatchers("/health_check").permitAll();
         http.authorizeRequests().antMatchers("/login").permitAll();
-//        http.authorizeRequests().antMatchers("/users").permitAll();
+//        http.authorizeRequests().antMatchers("/users/**").permitAll();
         http.authorizeRequests().antMatchers("/**")
-//                .hasIpAddress("192.168.10.135") // <- IP 변경
-                .access("hasIpAddress('192.168.10.135') or hasIpAddress('127.0.0.1')")
+//                .hasIpAddress(env.getProperty("gateway.ip")) // <- IP 변경
+                .access("hasIpAddress('192.168.110.38') or hasIpAddress('127.0.0.1')")
                 .and()
                 .addFilter(getAuthenticationFilter());
 

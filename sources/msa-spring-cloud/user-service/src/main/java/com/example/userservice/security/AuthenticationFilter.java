@@ -62,10 +62,10 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
         String userName = ((User)authResult.getPrincipal()).getUsername();
         UserDto userDetails = userService.getUserDetailsByEmail(userName);
         String token = Jwts.builder()
-                .setSubject(userDetails.getUserId())
-                .setExpiration(new Date(System.currentTimeMillis() +
+                .setSubject(userDetails.getUserId()) // 어떤 재료로 토큰 만들건지
+                .setExpiration(new Date(System.currentTimeMillis() + // 유효기간
                         Long.parseLong(env.getProperty("token.expiration_time"))))
-                .signWith(SignatureAlgorithm.HS512, env.getProperty("token.secret"))
+                .signWith(SignatureAlgorithm.HS512, env.getProperty("token.secret")) // 어떤 방식으로 만들건지
                 .compact();
 
         response.addHeader("token", token);
